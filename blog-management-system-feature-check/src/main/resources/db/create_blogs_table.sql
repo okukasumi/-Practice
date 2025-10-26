@@ -1,0 +1,11 @@
+-- CREATE TABLE "Blog" (
+--     "id" SERIAL PRIMARY KEY,
+--     "タイトル" VARCHAR(30) NOT NULL CHECK ("タイトル" <> ''),
+--     "内容" VARCHAR(40000) NOT NULL CHECK ("内容" <> ''),
+--     "作成日時" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     "更新日時" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+-- 	"削除日時" TIMESTAMP);
+-- SELECT * FROM public."Blog";
+-- INSERT INTO public."Blog"("id","タイトル","内容","作成日時","更新日時","削除日時")
+-- VALUES(DEFAULT,'てすと','今週は菊花賞',DEFAULT,DEFAULT,NULL)
+SELECT * FROM public."Blog";
