@@ -4,28 +4,28 @@
 <!-- ・一覧取得 (findAll) 削除日時が null のデータを取得し、ID が降順になる SELECT 文を作成してください。 -->
 	<select id="findAll" resultType="com.example.blog.entity.Blog">
 		SELECT id,タイトル as title,内容 as content,作成日時 as creationDateTime,更新日時 as updateDateTime,削除日時 as deleteDateTime
-		 FROM Blog WHERE 削除日時 IS NULL ORDER BY id DESC
+		 FROM public."Blog" WHERE 削除日時 IS NULL ORDER BY id DESC
 	</select>
 
 <!-- ・ID 指定で取得 (findById) 指定された ID かつ削除日時が null のブログ記事を取得する SELECT 文を作成してください。 -->
 	<select id="findById" resultType="com.example.blog.entity.Blog">
-		SELECT  id,タイトル as title,内容 as content,作成日時 as creationDateTime,更新日時 as updateDateTime,削除日時 as deleteDateTime
-		FROM Blog WHERE 削除日時 IS NULL AND id=#{id}
+		SELECT id,タイトル as title,内容 as content,作成日時 as creationDateTime,更新日時 as updateDateTime,削除日時 as deleteDateTime
+		FROM public."Blog" WHERE 削除日時 IS NULL AND id=#{id}
 	</select>
 
 <!-- ・新規登録 (save) タイトルと内容を INSERT し、作成日時・更新日時は CURRENT_TIMESTAMP を設定してください。
 	 自動採番された ID は keyProperty="id" で取得できるようにしてください。 -->
 	 <insert id="save" useGeneratedKeys="true" keyProperty="id">
-	 	INSERT INTO Blog(タイトル,内容,作成日時,更新日時) VALUES (#{title},#{content},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+	 	INSERT INTO public."Blog" (タイトル,内容,作成日時,更新日時) VALUES (#{title},#{content},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
 	 </insert>
 
 <!-- ・更新 (update) タイトルと内容を UPDATE し、更新日時は CURRENT_TIMESTAMP に設定してください。 削除日時が null のものだけ更新対象にしてください。 -->
 	<update id="update">
-		UPDATE Blog SET タイトル=#{title},内容=#{content},更新日時=CURRENT_TIMESTAMP WHERE id=#{id} AND 削除日時 IS NULL
+		UPDATE public."Blog" SET タイトル=#{title},内容=#{content},更新日時=CURRENT_TIMESTAMP WHERE id=#{id} AND 削除日時 IS NULL
 	</update>
 	
 <!-- ・削除 (delete) 指定した ID の削除日時を CURRENT_TIMESTAMP に設定する UPDATE 文を作成してください。 -->
 	<update id="delete">
-		UPDATE Blog SET 削除日時=CURRENT_TIMESTAMP WHERE id=#{id}
+		UPDATE public."Blog" SET 削除日時=CURRENT_TIMESTAMP WHERE id=#{id}
 	</update>
 </mapper>
